@@ -91,6 +91,7 @@ namespace UnitTesting.Demo.Library.Tests
         }
 
         [Test]
+        [Order(5)]
         public void Age_WhenBirthYearAfterCurrentYear_ShouldThrowException()
         {
             // arrange
