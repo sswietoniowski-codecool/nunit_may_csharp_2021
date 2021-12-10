@@ -11,6 +11,17 @@ namespace UnitTesting.Demo.Library.Tests
     [TestFixture]
     public class PersonTests
     {
+        const string _firstName = "Jan";
+        const string _lastName = "Kowalski";
+        const int _birthYear = 2000;
+        private Person _person;
+
+        [SetUp]
+        public void CreateTestPerson()
+        {
+            _person = new Person(_firstName, _lastName, _birthYear);
+        }
+
         [Test]
         [Order(1)]
         public void Constructor_WhenCalled_ShouldInitializeProperties()
@@ -35,14 +46,10 @@ namespace UnitTesting.Demo.Library.Tests
         public void FullName_WhenCalled_ShouldReturnProperName()
         {
             // arrange
-            const string firstName = "Jan";
-            const string lastName = "Kowalski";
-            const int birthYear = 2000;
-            string expectedFullName = $"{firstName} {lastName}";
-            Person person = new Person(firstName, lastName, birthYear);
+            string expectedFullName = $"{_firstName} {_lastName}";
 
             // act
-            string actualFullName = person.FullName;
+            string actualFullName = _person.FullName;
 
             // assert
             Assert.AreEqual(expectedFullName, actualFullName);
@@ -87,15 +94,11 @@ namespace UnitTesting.Demo.Library.Tests
         public void Age_WhenBirthYearAfterCurrentYear_ShouldThrowException()
         {
             // arrange
-            const string firstName = "Jan";
-            const string lastName = "Kowalski";
-            const int birthYear = 2000;
-            Person person = new Person(firstName, lastName, birthYear);
             const int currentYear = 1999;
 
             // act
             // assert
-            Assert.Throws<ArgumentException>(() => person.Age(currentYear));
+            Assert.Throws<ArgumentException>(() => _person.Age(currentYear));
         }
 
         private static IEnumerable Age_TestData
