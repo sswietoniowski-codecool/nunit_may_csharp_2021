@@ -87,7 +87,7 @@ namespace UnitTesting.Demo.Library.Tests
             int actualAge = person.Age(currentYear);
 
             // assert
-            Assert.AreEqual(expectedAge, actualAge);
+            Assert.That(actualAge, Is.EqualTo(expectedAge));
         }
 
         [Test]
